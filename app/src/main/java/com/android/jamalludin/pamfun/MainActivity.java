@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.HorizontalScrollView;
 import android.widget.TabHost;
 
 import java.util.ArrayList;
@@ -98,6 +99,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onTabChanged(String tabId) {
         int selectedItem = tabHost.getCurrentTab();
         viewPager.setCurrentItem(selectedItem);
+
+        HorizontalScrollView horizontalScrollView = (HorizontalScrollView) findViewById(R.id.horizontalscroolview);
+        View tabview = tabHost.getCurrentTabView();
+        int scrollPos = tabview.getLeft()-(horizontalScrollView.getWidth()-tabview.getWidth())/ 2;
+        horizontalScrollView.smoothScrollTo(scrollPos, 0);
     }
 
     @Override
